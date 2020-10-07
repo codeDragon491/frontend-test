@@ -1,5 +1,19 @@
 .page {
     min-height: 100vh;
     position: relative;
-    background: #F6F7F7;
+    background-color: #F6F7F7;
+}
+
+.background {
+    position: absolute;
+    left: -24.34%;
+    right: 11.99%;
+    top: -54.57%;
+    bottom: 0.54%;
+}
+
+@media only screen and (min-width: 768px) {
+    .background {
+        top: -14.57%;
+    }
 }
