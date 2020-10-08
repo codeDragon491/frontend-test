@@ -43,6 +43,14 @@ class Tabs extends React.Component {
             <img src={logo} alt="logo" />
           </div>{" "}
         </div>{" "}
+        {documents.map((document) => {
+          if (document.id !== activeTab) return undefined;
+          return (
+            <div className={styles.tabContent} key={document.id}>
+              <h1> {document.title} </h1> <p> {document.content} </p>{" "}
+            </div>
+          );
+        })}{" "}
       </div>
     );
   }
