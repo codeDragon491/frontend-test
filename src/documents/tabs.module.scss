@@ -26,6 +26,16 @@
     padding: 0 1em;
 }
 
+.tabListItem_active {
+    position: relative;
+    top: 20px;
+    height: 43px;
+    padding-top: 10px;
+    background: #F9FBFC;
+    color: #004F54;
+    border-radius: 5px;
+}
+
 .logo img {
     max-width: 45%;
 }

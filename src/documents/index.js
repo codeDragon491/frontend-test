@@ -36,9 +36,9 @@ class Documents extends React.Component {
   render() {
     const { error, isLoaded, documents } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div> Error: {error.message} </div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div> Loading... </div>;
     } else {
       return (
         <div className={styles.page}>
@@ -57,9 +57,9 @@ class Documents extends React.Component {
                 fill="#004F54"
                 fillOpacity="0.05"
               />
-            </svg>
-          </div>
-          <Tabs documents={documents}></Tabs>
+            </svg>{" "}
+          </div>{" "}
+          <Tabs documents={documents}> </Tabs>{" "}
         </div>
       );
     }
