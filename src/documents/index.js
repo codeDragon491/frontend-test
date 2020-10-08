@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./documents.module.scss";
+import Tabs from "./tabs.js";
 
 class Documents extends React.Component {
   constructor(props) {
@@ -58,13 +59,7 @@ class Documents extends React.Component {
               />
             </svg>
           </div>
-          <div className={styles.menuTab}>
-            {documents.map((document) => (
-              <div className={styles.tab} key={document.id}>
-                {document.title}
-              </div>
-            ))}
-          </div>
+          <Tabs documents={documents}></Tabs>
         </div>
       );
     }
