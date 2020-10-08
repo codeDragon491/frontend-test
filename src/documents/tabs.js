@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./tabs.module.scss";
 import logo from "../assets/icons/icon-logo.png";
 import Tab from "./tab.js";
+import Sidebar from "./sidebar.js";
 
 class Tabs extends React.Component {
   static propTypes = {
@@ -48,6 +49,7 @@ class Tabs extends React.Component {
           return (
             <div className={styles.tabContent} key={document.id}>
               <h1> {document.title} </h1> <p> {document.content} </p>{" "}
+              <Sidebar></Sidebar>
             </div>
           );
         })}{" "}
