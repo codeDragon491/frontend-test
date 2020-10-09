@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./sidebar.module.scss";
 import icon_arrow from "../assets/icons/icon-arrow.png";
 import icon_comment from "../assets/icons/icon-comment.png";
@@ -6,6 +7,9 @@ import icon_add from "../assets/icons/icon-add.png";
 import icon_trash from "../assets/icons/icon-trash.png";
 
 class Sidebar extends React.Component {
+  static propTypes = {
+    document: PropTypes.object.isRequired,
+  };
   constructor(props) {
     super(props);
 
@@ -14,17 +18,15 @@ class Sidebar extends React.Component {
       addComment: false,
       viewComment: false,
       value: "Skriv kommentar her...",
+      commentId: null,
+      errorMessage: undefined,
     };
   }
   handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
-  saveComment = (event) => {
-    alert("A comment was submitted: " + this.state.value);
-    event.preventDefault();
-  };
+
   toggleMenu = (action) => {
-    console.log(action);
     const { isOpen } = this.state;
     if (isOpen === false) this.setState({ isOpen: true });
     else this.setState({ isOpen: false });
@@ -33,6 +35,37 @@ class Sidebar extends React.Component {
     if (action === "viewComment") this.setState({ viewComment: true });
     else this.setState({ viewComment: false });
   };
+  saveComment = (event) => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        document: "/api/documents/" + this.props.document.id,
+        content: this.state.value,
+      }),
+    };
+    fetch("http://api.edelmann.co.uk/api/notes", requestOptions)
+      .then(async (response) => {
+        const data = await response.json();
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        }
+
+        this.setState({ commentId: data.id });
+      })
+      .catch((error) => {
+        this.setState({ errorMessage: error.toString() });
+      });
+    event.preventDefault();
+  };
+
   render() {
     const {
       toggleMenu,
@@ -50,7 +83,7 @@ class Sidebar extends React.Component {
           }}
           className={styles.frame_comment}
         >
-          <form onSubmit={saveComment}>
+          <form>
             <textarea
               className={`${isOpen && addComment ? styles.isShown : null}`}
               value={value}
@@ -61,7 +94,9 @@ class Sidebar extends React.Component {
                 isOpen && addComment ? styles.isShown : null
               }`}
             >
-              <button className={styles.button_save}>Gem</button>
+              <button onClick={saveComment} className={styles.button_save}>
+                Gem
+              </button>
               <div className={styles.button_delete}>
                 <img
                   className={`${styles.icon}`}

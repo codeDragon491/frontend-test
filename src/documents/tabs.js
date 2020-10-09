@@ -50,7 +50,7 @@ class Tabs extends React.Component {
             <div className={styles.tabContent} key={document.id}>
               <h1> {document.title} </h1>{" "}
               <p className={styles.documentContent}> {document.content} </p>{" "}
-              <Sidebar></Sidebar>
+              <Sidebar document={document}></Sidebar>
             </div>
           );
         })}{" "}
