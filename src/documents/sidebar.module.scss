@@ -1,4 +1,5 @@
 .sidebar {
+    box-sizing: border-box;
     position: absolute;
     width: 36px;
     height: 248px;
@@ -6,15 +7,26 @@
     top: 143px;
     background: #004F54;
     border-radius: 8px;
+    padding: 1em 0;
+    transition: width 0.5s ease;
+}
+
+.sidebar_isOpen {
+    width: 494px;
+}
+
+.icons {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1em 0;
+    max-width: max-content;
+    margin-left: auto;
+    height: 100%;
 }
 
 .icon {
     max-width: 17px;
     cursor: pointer;
+    padding: 0 9.5px;
 }
 
 .icon:not(.arrow_up) {
@@ -23,4 +35,74 @@
 
 .arrow_up {
     transform: rotate(180deg);
+}
+
+.arrow_down {
+    margin-top: auto;
+}
+
+.frame_comment {
+    position: absolute;
+    padding: 0 0.5em 0 1em;
+    right: 36px;
+    left: 0;
+    height: 216px;
+    form {
+        height: 100%;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        textarea {
+            border: none;
+            overflow: auto;
+            outline: none;
+            box-shadow: none;
+            resize: none;
+            background-color: transparent;
+            color: #FFFFFF;
+            font-family: Helvetica Neue;
+            font-size: 15px;
+            line-height: 43px;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: visibility 0s, opacity 0.5s ease 0.5s;
+        }
+    }
+}
+
+.isShown {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease 0.5s;
+}
+
+.button_save {
+    height: 35px;
+    width: 92px;
+    background: #01575C;
+    box-shadow: 0px 0px 6px 1px rgba(0, 70, 75, 0.88);
+    border-radius: 3px;
+    border: none;
+    color: #FFFFFF;
+    font-family: Helvetica Neue;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+}
+
+.button_save:focus {
+    outline: none;
+}
+
+.button_delete {
+    margin-left: 0.75em;
 }

@@ -48,7 +48,8 @@ class Tabs extends React.Component {
           if (document.id !== activeTab) return undefined;
           return (
             <div className={styles.tabContent} key={document.id}>
-              <h1> {document.title} </h1> <p> {document.content} </p>{" "}
+              <h1> {document.title} </h1>{" "}
+              <p className={styles.documentContent}> {document.content} </p>{" "}
               <Sidebar></Sidebar>
             </div>
           );
