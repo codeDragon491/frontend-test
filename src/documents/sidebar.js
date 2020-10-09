@@ -18,8 +18,9 @@ class Sidebar extends React.Component {
       addComment: false,
       viewComment: false,
       value: "Skriv kommentar her...",
-      commentId: null,
+      comment: null,
       errorMessage: undefined,
+      isLoaded: false,
     };
   }
   handleChange = (event) => {
@@ -57,21 +58,20 @@ class Sidebar extends React.Component {
           const error = (data && data.message) || response.status;
           return Promise.reject(error);
         }
-
-        this.setState({ commentId: data.id });
+        console.log(data);
+        this.setState({ comment: data, value: "Skriv kommentar her..." });
       })
       .catch((error) => {
         this.setState({ errorMessage: error.toString() });
       });
     event.preventDefault();
   };
-
   render() {
     const {
       toggleMenu,
       handleChange,
       saveComment,
-      state: { isOpen, addComment, viewComment, value },
+      state: { isOpen, addComment, viewComment, value, comment },
     } = this;
     return (
       <div
@@ -107,6 +107,36 @@ class Sidebar extends React.Component {
             </div>
           </form>
         </div>
+        <div
+          style={{
+            visibility: isOpen && viewComment ? "visible" : "hidden",
+          }}
+          className={styles.frame_comment}
+        >
+          <form>
+            <textarea
+              className={`${isOpen && viewComment ? styles.isShown : null}`}
+              value={`${comment ? comment.content : ""}`}
+              onChange={handleChange}
+            />
+            <div
+              className={`${styles.actions} ${
+                isOpen && viewComment ? styles.isShown : null
+              }`}
+            >
+              <button onClick={saveComment} className={styles.button_save}>
+                Gem
+              </button>
+              <div className={styles.button_delete}>
+                <img
+                  className={`${styles.icon}`}
+                  src={icon_trash}
+                  alt="icon-trash"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
 
         <div className={styles.icons}>
           <img
@@ -114,12 +144,14 @@ class Sidebar extends React.Component {
             src={icon_arrow}
             alt="icon-arrow"
           />
-          <img
-            onClick={() => toggleMenu("viewComment")}
-            className={styles.icon}
-            src={icon_comment}
-            alt="icon-comment"
-          />
+          {comment && (
+            <img
+              onClick={() => toggleMenu("viewComment")}
+              className={styles.icon}
+              src={icon_comment}
+              alt="icon-comment"
+            />
+          )}
           <img
             className={styles.icon}
             src={icon_add}
