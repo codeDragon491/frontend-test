@@ -18,6 +18,7 @@ class Sidebar extends React.Component {
       addComment: false,
       viewComment: false,
       value: "Skriv kommentar her...",
+      comments: [],
       comment: null,
       errorMessage: undefined,
       isLoaded: false,
@@ -27,13 +28,14 @@ class Sidebar extends React.Component {
     this.setState({ value: event.target.value });
   };
 
-  toggleMenu = (action) => {
+  toggleMenu = (action, data) => {
     const { isOpen } = this.state;
     if (isOpen === false) this.setState({ isOpen: true });
     else this.setState({ isOpen: false });
     if (action === "addComment") this.setState({ addComment: true });
     else this.setState({ addComment: false });
-    if (action === "viewComment") this.setState({ viewComment: true });
+    if (action === "viewComment")
+      this.setState({ viewComment: true, comment: data });
     else this.setState({ viewComment: false });
   };
   saveComment = (event) => {
@@ -58,20 +60,48 @@ class Sidebar extends React.Component {
           const error = (data && data.message) || response.status;
           return Promise.reject(error);
         }
-        console.log(data);
-        this.setState({ comment: data, value: "Skriv kommentar her..." });
+        this.setState({
+          comment: data,
+          value: "Skriv kommentar her...",
+          comments: [...this.state.comments, data],
+        });
       })
       .catch((error) => {
         this.setState({ errorMessage: error.toString() });
       });
     event.preventDefault();
   };
+  componentDidMount() {
+    fetch("http://api.edelmann.co.uk/api/notes", {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            comments: result.filter(
+              (comment) =>
+                Number(comment.document.substr(-1)) === this.props.document.id
+            ),
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
   render() {
     const {
       toggleMenu,
       handleChange,
       saveComment,
-      state: { isOpen, addComment, viewComment, value, comment },
+      state: { isOpen, addComment, viewComment, value, comment, comments },
     } = this;
     return (
       <div
@@ -117,7 +147,7 @@ class Sidebar extends React.Component {
             <textarea
               className={`${isOpen && viewComment ? styles.isShown : null}`}
               value={`${comment ? comment.content : ""}`}
-              onChange={handleChange}
+              readOnly={true}
             />
             <div
               className={`${styles.actions} ${
@@ -144,19 +174,22 @@ class Sidebar extends React.Component {
             src={icon_arrow}
             alt="icon-arrow"
           />
-          {comment && (
-            <img
-              onClick={() => toggleMenu("viewComment")}
-              className={styles.icon}
-              src={icon_comment}
-              alt="icon-comment"
-            />
-          )}
+          {comments.map((comment) => {
+            return (
+              <img
+                key={comment.id}
+                onClick={() => toggleMenu("viewComment", comment)}
+                className={styles.icon}
+                src={icon_comment}
+                alt="icon-comment"
+              />
+            );
+          })}
           <img
             className={styles.icon}
             src={icon_add}
             alt="icon-add"
-            onClick={() => toggleMenu("addComment")}
+            onClick={() => toggleMenu("addComment", undefined)}
           />
           <img
             className={`${styles.arrow_down} ${styles.icon}`}
