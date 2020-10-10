@@ -35,10 +35,13 @@ class Documents extends React.Component {
   }
   render() {
     const { error, isLoaded, documents } = this.state;
+    const divStyle = {
+      textAlign: "center",
+    };
     if (error) {
-      return <div> Error: {error.message} </div>;
+      return <div style={divStyle}> Error: {error.message} </div>;
     } else if (!isLoaded) {
-      return <div> Loading... </div>;
+      return <div style={divStyle}> Loading... </div>;
     } else {
       return (
         <div className={styles.page}>
