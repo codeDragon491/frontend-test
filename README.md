@@ -1,3 +1,13 @@
+## Result
+
+I solved the test by using the React framework with SCSS modules.
+
+In order to run the project:
+
+### `npm install`
+
+### `npm start`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
