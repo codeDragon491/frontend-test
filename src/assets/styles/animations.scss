@@ -1,0 +1,51 @@
+@keyframes ldio-eycsncyzp7l {
+    0% {
+        top: 46px;
+        left: 46px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 8px;
+        left: 8px;
+        width: 76px;
+        height: 76px;
+        opacity: 0;
+    }
+}
+
+.ldio-eycsncyzp7l div {
+    position: absolute;
+    border-width: 4px;
+    border-style: solid;
+    opacity: 1;
+    border-radius: 50%;
+    animation: ldio-eycsncyzp7l 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.ldio-eycsncyzp7l div:nth-child(1) {
+    border-color: #004f54
+}
+
+.ldio-eycsncyzp7l div:nth-child(2) {
+    border-color: #01575c;
+    animation-delay: -0.5s;
+}
+
+.loadingio-spinner-ripple-1cz1yqdx609 {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.ldio-eycsncyzp7l {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(0.6);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+    /* see note above */
+}

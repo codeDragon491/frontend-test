@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./documents.module.scss";
 import Tabs from "./tabs.js";
+import "../assets/styles/animations.scss";
 
 class Documents extends React.Component {
   constructor(props) {
@@ -61,7 +62,17 @@ class Documents extends React.Component {
           </svg>{" "}
         </div>{" "}
         {error && <div style={divStyle}> Error: {error.message} </div>}
-        {!isLoaded && <div style={divStyle}> Loading... </div>}
+        {!isLoaded && (
+          <div style={divStyle}>
+            {" "}
+            <div className="loadingio-spinner-ripple-1cz1yqdx609">
+              <div className="ldio-eycsncyzp7l">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        )}
         {!error && isLoaded && <Tabs documents={documents}> </Tabs>}
       </div>
     );
