@@ -3,12 +3,33 @@
     position: absolute;
     width: 36px;
     height: 248px;
-    right: 100px;
-    top: 143px;
+    right: 26px;
+    top: 85px;
     background: #004F54;
     border-radius: 8px;
     padding: 1em 0;
     transition: width 0.5s ease;
+}
+
+@media only screen and (min-width: 768px) and (orientation:portrait) {
+    .sidebar {
+        right: 98px;
+        top: 165px;
+    }
+}
+
+@media only screen and (min-width: 667px) and (max-width: 1023px) and (orientation:landscape) {
+    .sidebar {
+        right: 62px;
+        top: 100px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation:landscape) {
+    .sidebar {
+        right: 98px;
+        top: 165px;
+    }
 }
 
 .sidebar_isOpen {

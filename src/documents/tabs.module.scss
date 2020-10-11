@@ -9,12 +9,88 @@
     background: #004F54;
     box-shadow: 0px 0px 1px 1px rgba(0, 55, 59, 0.4);
     border-radius: 10px;
-    width: 78%;
+    width: 95%;
     top: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1.75em;
+    box-sizing: border-box;
+}
+
+.tabContent {
+    position: absolute;
+    width: 95%;
+    top: 143px;
+    background: #F9FBFC;
+    box-shadow: 0px 0px 7px rgba(49, 49, 49, 0.1);
+    border-radius: 20px;
+    padding: 1.25em 1em 0.5em;
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 43px;
+    color: #696969;
+    box-sizing: border-box;
+    h1 {
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 43px;
+        color: #004F54;
+        margin: 0;
+    }
+}
+
+.documentContent {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(192, 203, 202, 0.3);
+    border-radius: 10px;
+    padding: 1.25em 3.5em 1.25em 1.25em;
+    margin: 1em 0;
+    max-height: 700px;
+    overflow: scroll;
+}
+
+@media only screen and (min-width: 768px) and (orientation:portrait) {
+    .tabMenu {
+        width: 83%;
+    }
+    .tabContent {
+        width: 89%;
+        padding: 3.75em 4.75em 1em;
+    }
+    .documentContent {
+        padding: 2.5em 5em 2.5em 2.5em;
+        margin: 2.5em 0;
+    }
+}
+
+@media only screen and (min-width: 667px) and (max-width: 1023px) and (orientation:landscape) {
+    .tabMenu {
+        width: 88%;
+    }
+    .tabContent {
+        width: 94%;
+        padding: 1.75em 2.75em 0.5em;
+    }
+    .documentContent {
+        padding: 1.5em 4.5em 1.5em 1.5em;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (orientation:landscape) {
+    .tabMenu {
+        width: 83%;
+    }
+    .tabContent {
+        width: 89%;
+        padding: 3.75em 4.75em 1em;
+    }
+    .documentContent {
+        padding: 2.5em 5em 2.5em 2.5em;
+        margin: 2.5em 0;
+    }
 }
 
 .tabList {
@@ -23,6 +99,7 @@
     color: #fff;
     font-weight: bold;
     font-size: 12px;
+    text-align: center;
     height: 43px;
 }
 
@@ -42,37 +119,8 @@
     z-index: 10;
 }
 
-.tabContent {
-    position: absolute;
-    width: 77%;
-    top: 143px;
-    background: #F9FBFC;
-    box-shadow: 0px 0px 7px rgba(49, 49, 49, 0.1);
-    border-radius: 20px;
-    padding: 3.75em 4.75em 1em;
-    font-family: Helvetica Neue;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 43px;
-    color: #696969;
-    h1 {
-        font-weight: bold;
-        font-size: 30px;
-        line-height: 43px;
-        color: #004F54;
-        margin: 0;
-    }
-}
-
-.documentContent {
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(192, 203, 202, 0.3);
-    border-radius: 10px;
-    padding: 2.5em 5em 2.5em 2.5em;
-    margin: 1em 0;
-    max-height: 700px;
-    overflow: scroll;
+.logo {
+    cursor: pointer;
 }
 
 .logo img {
