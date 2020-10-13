@@ -7,7 +7,7 @@
     top: 85px;
     background: #004F54;
     border-radius: 8px;
-    padding: 1em 0;
+    padding: 0.75em 0;
     transition: width 0.5s ease;
 }
 
@@ -42,6 +42,7 @@
     max-width: max-content;
     margin-left: auto;
     height: 100%;
+    overflow: scroll;
 }
 
 .icon {
@@ -56,10 +57,12 @@
 
 .arrow_up {
     transform: rotate(180deg);
+    cursor: move;
 }
 
 .arrow_down {
     margin-top: auto;
+    cursor: all-scroll;
 }
 
 .frame_comment {
