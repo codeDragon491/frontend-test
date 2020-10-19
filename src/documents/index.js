@@ -4,15 +4,12 @@ import Tabs from "./tabs.js";
 import "../assets/styles/animations.scss";
 
 class Documents extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+state = {
       error: null,
       isLoaded: false,
       documents: [],
-    };
-  }
-  componentDidMount() {
+}
+componentDidMount() {
     fetch("http://api.edelmann.co.uk/api/documents", {
       headers: {
         Accept: "application/json",
@@ -33,8 +30,8 @@ class Documents extends React.Component {
           });
         }
       );
-  }
-  render() {
+}
+render() {
     const { error, isLoaded, documents } = this.state;
     const divStyle = {
       position: "relative",

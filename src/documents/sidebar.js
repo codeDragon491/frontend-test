@@ -10,10 +10,7 @@ class Sidebar extends React.Component {
   static propTypes = {
     document: PropTypes.object.isRequired,
   };
-  constructor(props) {
-    super(props);
-
-    this.state = {
+  state = {
       isOpen: false,
       addComment: false,
       viewComment: false,
@@ -22,8 +19,7 @@ class Sidebar extends React.Component {
       comment: null,
       errorMessage: undefined,
       isLoaded: false,
-    };
-  }
+  };
   handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
@@ -53,7 +49,6 @@ class Sidebar extends React.Component {
     fetch("http://api.edelmann.co.uk/api/notes", requestOptions)
       .then(async (response) => {
         const data = await response.json();
-
         // check for error response
         if (!response.ok) {
           // get error message from body or default to response status

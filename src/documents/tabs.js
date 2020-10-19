@@ -9,13 +9,10 @@ class Tabs extends React.Component {
   static propTypes = {
     documents: PropTypes.instanceOf(Array).isRequired,
   };
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeTab: this.props.documents[0].id,
-    };
-  }
+  
+  state = {
+    activeTab: this.props.documents[0].id,
+  };
   onClickTabItem = (tab) => {
     this.setState({ activeTab: tab });
   };
